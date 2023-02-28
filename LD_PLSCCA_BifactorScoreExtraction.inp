@@ -1,0 +1,332 @@
+TITLE: Bifactor Extraction;
+
+  DATA:   FILE is bifactor_variables.dat;
+
+VARIABLE: NAMES ARE 
+
+subnum_char
+PSWEIGHT
+FAMID
+siten
+cbcl01_y1
+cbcl03_y1
+cbcl04_y1
+cbcl07_y1
+cbcl09_y1
+cbcl10_y1
+cbcl13_y1
+cbcl15_y1
+cbcl16_y1
+cbcl17_y1
+cbcl19_y1
+cbcl22_y1
+cbcl23_y1
+cbcl25_y1
+cbcl26_y1
+cbcl27_y1
+cbcl28_y1
+cbcl30_y1
+cbcl31_y1
+cbcl32_y1
+cbcl33_y1
+cbcl34_y1
+cbcl35_y1
+cbcl37_y1
+cbcl39_y1
+cbcl41_y1
+cbcl43_y1
+cbcl46_y1
+cbcl50_y1
+cbcl51_y1
+cbcl52_y1
+cbcl56a_y1
+cbcl56b_y1
+cbcl56c_y1
+cbcl56f_y1
+cbcl56g_y1
+cbcl57_y1
+cbcl61_y1
+cbcl62_y1
+cbcl66_y1
+cbcl68_y1
+cbcl71_y1
+cbcl72_y1
+cbcl74_y1
+cbcl75_y1
+cbcl80_y1
+cbcl81_y1
+cbcl82_y1
+cbcl84_y1
+cbcl85_y1
+cbcl86_y1
+cbcl87_y1
+cbcl88_y1
+cbcl89_y1
+cbcl90_y1
+cbcl94_y1
+cbcl95_y1
+cbcl97_y1
+cbcl102_y1
+cbcl103_y1
+cbcl106_y1
+cbcl109_y1
+cbcl111_y1
+cbcl112_y1
+ATTEND_y1
+DESTROY_y1;
+
+  USEVARIABLES ARE 
+
+cbcl01_y1
+cbcl03_y1
+cbcl04_y1
+cbcl07_y1
+cbcl09_y1
+cbcl10_y1
+cbcl13_y1
+cbcl15_y1
+cbcl16_y1
+cbcl17_y1
+cbcl19_y1
+cbcl22_y1
+cbcl23_y1
+cbcl25_y1
+cbcl26_y1
+cbcl27_y1
+cbcl28_y1
+cbcl30_y1
+cbcl31_y1
+cbcl32_y1
+cbcl33_y1
+cbcl34_y1
+cbcl35_y1
+cbcl37_y1
+cbcl39_y1
+cbcl41_y1
+cbcl43_y1
+cbcl46_y1
+cbcl50_y1
+cbcl51_y1
+cbcl52_y1
+cbcl56a_y1
+cbcl56b_y1
+cbcl56c_y1
+cbcl56f_y1
+cbcl56g_y1
+cbcl57_y1
+cbcl61_y1
+cbcl62_y1
+cbcl66_y1
+cbcl68_y1
+cbcl71_y1
+cbcl72_y1
+cbcl74_y1
+cbcl75_y1
+cbcl80_y1
+cbcl81_y1
+cbcl82_y1
+cbcl84_y1
+cbcl85_y1
+cbcl86_y1
+cbcl87_y1
+cbcl88_y1
+cbcl89_y1
+cbcl90_y1
+cbcl94_y1
+cbcl95_y1
+cbcl97_y1
+cbcl102_y1
+cbcl103_y1
+cbcl106_y1
+cbcl109_y1
+cbcl111_y1
+cbcl112_y1
+ATTEND_y1
+DESTROY_y1;
+
+  CATEGORICAL=
+
+cbcl01_y1
+cbcl03_y1
+cbcl04_y1
+cbcl07_y1
+cbcl09_y1
+cbcl10_y1
+cbcl13_y1
+cbcl15_y1
+cbcl16_y1
+cbcl17_y1
+cbcl19_y1
+cbcl22_y1
+cbcl23_y1
+cbcl25_y1
+cbcl26_y1
+cbcl27_y1
+cbcl28_y1
+cbcl30_y1
+cbcl31_y1
+cbcl32_y1
+cbcl33_y1
+cbcl34_y1
+cbcl35_y1
+cbcl37_y1
+cbcl39_y1
+cbcl41_y1
+cbcl43_y1
+cbcl46_y1
+cbcl50_y1
+cbcl51_y1
+cbcl52_y1
+cbcl56a_y1
+cbcl56b_y1
+cbcl56c_y1
+cbcl56f_y1
+cbcl56g_y1
+cbcl57_y1
+cbcl61_y1
+cbcl62_y1
+cbcl66_y1
+cbcl68_y1
+cbcl71_y1
+cbcl72_y1
+cbcl74_y1
+cbcl75_y1
+cbcl80_y1
+cbcl81_y1
+cbcl82_y1
+cbcl84_y1
+cbcl85_y1
+cbcl86_y1
+cbcl87_y1
+cbcl88_y1
+cbcl89_y1
+cbcl90_y1
+cbcl94_y1
+cbcl95_y1
+cbcl97_y1
+cbcl102_y1
+cbcl103_y1
+cbcl106_y1
+cbcl109_y1
+cbcl111_y1
+cbcl112_y1
+ATTEND_y1
+DESTROY_y1;
+
+  MISSING ARE .;
+    WEIGHT = PSWEIGHT;
+    STRATIFICATION=SITEN;
+    IDVARIABLE = subnum_char;
+    CLUSTER=FAMID;
+
+    ANALYSIS:
+    ESTIMATOR=WLSMV;
+    ITERATIONS=500000;
+    TYPE = COMPLEX;
+
+  MODEL:
+
+  [GENERAL@0]; [INT@0]; [EXT@0]; [ADHD@0];
+  GENERAL@1; INT@1; EXT@1; ADHD@1; 
+
+  GENERAL BY 
+cbcl01_y1*.9 
+cbcl03_y1
+cbcl04_y1
+cbcl07_y1
+cbcl09_y1
+cbcl10_y1
+cbcl13_y1
+cbcl15_y1
+cbcl16_y1
+cbcl17_y1
+cbcl19_y1
+cbcl22_y1
+cbcl23_y1
+cbcl25_y1
+cbcl26_y1
+cbcl27_y1
+cbcl28_y1
+cbcl30_y1
+cbcl31_y1
+cbcl32_y1
+cbcl33_y1
+cbcl34_y1
+cbcl35_y1
+cbcl37_y1
+cbcl39_y1
+cbcl41_y1
+cbcl43_y1
+cbcl46_y1
+cbcl50_y1
+cbcl51_y1
+cbcl52_y1
+cbcl56a_y1
+cbcl56b_y1
+cbcl56c_y1
+cbcl56f_y1
+cbcl56g_y1
+cbcl57_y1
+cbcl61_y1
+cbcl62_y1
+cbcl66_y1
+cbcl68_y1
+cbcl71_y1
+cbcl72_y1
+cbcl74_y1
+cbcl75_y1
+cbcl80_y1
+cbcl81_y1
+cbcl82_y1
+cbcl84_y1
+cbcl85_y1
+cbcl86_y1
+cbcl87_y1
+cbcl88_y1
+cbcl89_y1
+cbcl90_y1
+cbcl94_y1
+cbcl95_y1
+cbcl97_y1
+cbcl102_y1
+cbcl103_y1
+cbcl106_y1
+cbcl109_y1
+cbcl111_y1
+cbcl112_y1
+ATTEND_y1
+DESTROY_y1;
+
+  EXT BY cbcl03_y1*.8 cbcl07_y1 cbcl15_y1 cbcl16_y1
+  cbcl19_y1 cbcl22_y1 cbcl23_y1
+  cbcl25_y1 cbcl26_y1 cbcl27_y1 cbcl28_y1 cbcl34_y1
+  cbcl37_y1 cbcl39_y1 
+  cbcl43_y1 cbcl57_y1 cbcl68_y1 cbcl72_y1 cbcl74_y1     
+  cbcl81_y1 cbcl82_y1 cbcl86_y1 cbcl87_y1 cbcl88_y1 
+  cbcl89_y1 cbcl90_y1 cbcl94_y1 cbcl95_y1 cbcl97_y1
+  cbcl106_y1 cbcl109_y1 DESTROY_y1;
+
+  ADHD BY cbcl01_y1*.8 cbcl04_y1 cbcl09_y1 cbcl10_y1
+  cbcl13_y1 cbcl17_y1 cbcl41_y1 cbcl46_y1 cbcl61_y1 
+  cbcl62_y1 cbcl66_y1 cbcl80_y1 cbcl84_y1 cbcl85_y1
+  ATTEND_y1;
+
+  INT BY cbcl30_y1*.8 cbcl31_y1 cbcl32_y1 cbcl33_y1
+  cbcl35_y1 cbcl50_y1 cbcl51_y1 cbcl52_y1 
+  cbcl56a_y1 cbcl56b_y1 cbcl56c_y1 cbcl56f_y1
+  cbcl56g_y1 cbcl71_y1 cbcl75_y1 
+  cbcl102_y1 cbcl103_y1 cbcl111_y1 cbcl112_y1;
+ 
+  GENERAL WITH INT @0;
+  GENERAL WITH EXT @0;
+  GENERAL WITH ADHD @0;
+  INT WITH EXT @0;
+  ADHD WITH EXT @0; ADHD WITH INT @0;
+
+   
+  savedata:
+  FILE IS BifactorScores_PLSCCA.dat;
+  SAVE=FSCORES;
+
+  OUTPUT: SAMPSTAT STDYX;
+
